@@ -1,135 +1,146 @@
+@include('layouts.head.head');
+
 <!DOCTYPE html>
-<html dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template" />
-    <meta name="description" content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>Login</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('dashboard/assets/images/favicon.png') }}" />
-    <!-- Custom CSS -->
-    <link href="{{ asset('dashboard/assets/css/style.min.css') }}" rel="stylesheet" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap">
     <style>
+        /* Reseting */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            background-color: lightgray;
+            background: #ecf0f3;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper {
+            max-width: 350px;
+            min-height: 500px;
+            padding: 40px 30px 30px 30px;
+            background-color: #ecf0f3;
+            border-radius: 15px;
+            box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+        }
+
+        .logo {
+            width: 80px;
+            margin: auto;
+        }
+
+        .name {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 1.3px;
+            text-align: center;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .form-field {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+        }
+
+        .form-field input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 10px;
+        }
+
+        .form-field .fas {
+            color: #555;
+        }
+
+        .btn {
+            width: 100%;
+            height: 40px;
+            background-color: #03A9F4;
+            color: #fff;
+            border-radius: 25px;
+            border: none;
+            box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+            letter-spacing: 1.3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #039BE5;
+        }
+
+        .text-center a {
+            text-decoration: none;
+            font-size: 0.8rem;
+            color: #03A9F4;
+        }
+
+        .text-center a:hover {
+            color: #039BE5;
+        }
+
+        .alert {
+            color: red;
+            text-align: center;
         }
     </style>
 </head>
-
 <body>
-    <div class="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
-            </div>
+
+    <div class="wrapper">
+       
+        <div class="name">
+            Login 
         </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
-            <div class="auth-box border-top border-secondary">
-                <div id="loginform">
-                    <div class="text-center pt-3 pb-3"></div>
-                    <!-- Form -->
-                    <form class="form-horizontal mt-3" action="{{ route('handleLogin') }}" method="post">
-                        @csrf
-                        <div class="row pb-4">
-                            <div class="col-12">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger text-center">
-                                        @foreach ($errors->all() as $error)
-                                            <div>{{ $error }}</div>
-                                        @endforeach
-                                    </div>
-                                @endif
-
-                                @if (session('error'))
-                                    <div class="alert alert-danger text-center">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-                            </div>
+        <form class="form-horizontal p-3 mt-3" action="{{ route('handleLogin') }}" method="post" autocomplete="off">
+            @csrf
+            <div class="row pb-4">
+                <div class="col-12">
+                    @if ($errors->any())
+                        <div class="alert">
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
                         </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-success text-white h-100" id="basic-addon1">
-                                    <i class="mdi mdi-account fs-4"></i>
-                                </span>
-                            </div>
-                            <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" required="" name="email" />
+                    @endif
+                    @if (session('error'))
+                        <div class="alert">
+                            {{ session('error') }}
                         </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-warning text-white h-100" id="basic-addon2">
-                                    <i class="mdi mdi-lock fs-4"></i>
-                                </span>
-                            </div>
-                            <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" required="" name="password" />
-                        </div>
-
-                        <div class="row border-top border-secondary">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <div class="pt-3">
-                                        <button class="btn btn-success float-end text-white" type="submit">Login</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    @endif
                 </div>
             </div>
+
+            <div class="form-field d-flex align-items-center">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="form-field d-flex align-items-center">
+                <input name="password" placeholder="Password"  type="password"  required>
+            </div>
+
+            <button class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center mt-3">
+           New User ? <a href="{{route('register')}}">Sign up</a>
         </div>
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- All Required js -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('dashboard/assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('dashboard/assets/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugin js -->
-    <!-- ============================================================== -->
-    <script>
-        $(".preloader").fadeOut();
-        // ============================================================== 
-        // Login and Recover Password
-        // ============================================================== 
-        $("#to-recover").on("click", function () {
-            $("#loginform").slideUp();
-            $("#recoverform").fadeIn();
-        });
-        $("#to-login").click(function () {
-            $("#recoverform").hide();
-            $("#loginform").fadeIn();
-        });
-    </script>
+
 </body>
 </html>
